@@ -5,8 +5,8 @@ server:
   # log config
 logging:
   file:
-    path: logs/xxl-job/
-    name: ${logging.file.path}xxl-job-executor.log
+    path: logs/xxl-job
+    name: ${logging.file.path}/xxl-job-executor.log
   pattern:
     console: "%date %contextName [%thread] %-5level %logger{36} - %msg%n"
     file: "%date %level [%thread] %logger{36} [%file : %line] %msg%n"
@@ -14,7 +14,9 @@ logging:
 xxl:
   job:
     admin:
+      # 注意这里 要和 xxl-job [server.servlet.context-path] 配置对应，此例应设置为 [=/]
       addresses: http://127.0.0.1:8080
+      # [xxl.job.accessToken] 设置为空
       username: admin
       password: 123456
       update: true
@@ -24,7 +26,7 @@ xxl:
       address:
       ip:
       port: 9999
-      logPath: ${logging.file.path}integration
+      logPath: ${logging.file.path}/integration
       logRetentionDays: 30
     accessToken:
 
